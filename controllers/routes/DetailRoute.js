@@ -1,10 +1,10 @@
 const RouteController = require('./RouteController')
 
-class IndexRoute extends RouteController {
+class DetailRoute extends RouteController {
     constructor(params) {
         super(params)
         this.renderView(params.view, params.response)
     }
 }
 
-module.exports = IndexRoute
+module.exports = DetailRoute

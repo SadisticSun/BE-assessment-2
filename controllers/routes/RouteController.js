@@ -1,9 +1,12 @@
 const Controller = require('../Controller')
 
 class RouteController extends Controller {
-    constructor(path, data, res) {
+    constructor(params) {
         super()
-        this.assertNotNull(path)
+        this.assertNotNull(params.path)
+        this.assertNotNull(params.view)
+        this.assertNotNull(params.request)
+        this.assertNotNull(params.response)
     }
 
     renderView(view, res) {
