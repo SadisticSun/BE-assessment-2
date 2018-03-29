@@ -12,6 +12,14 @@ class RouteController extends Controller {
     renderView(view, res) {
         return res.render(view)
     } 
+
+    // onError(res) {
+    //     return res.render('error', error = {
+    //         code: 404,
+    //         msg: 'Not Found'
+    //         }
+    //     )
+    // }
 }
 
 module.exports = RouteController

@@ -28,7 +28,7 @@ app.get('/', (req, res) => new IndexRoute({
 }))
 
 app.get('/:id', (req, res) => new DetailRoute({
-    path: '/',
+    path: `/${req.params.id}`,
     view: 'detail', 
     request: req, 
     response: res
