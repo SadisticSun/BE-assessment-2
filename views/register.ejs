@@ -1,0 +1,32 @@
+<% include partials/head %>
+<% include components/header %>
+
+    <body>
+        <main class="container">
+           <section>
+               <div class="block">
+                    <form action="/register" method="POST" id="register-form">
+                        <label>
+                            Voornaam
+                            <input type="text" name="first_name" placeholder="Bijv. John" required>
+                        </label>
+                        <label>
+                            Achternaam
+                            <input type="text" name="last_name" placeholder="Bijv. Doe" required>
+                        </label>
+                        <label>
+                            Gebruikersnaam
+                            <input type="text" name="user_name" placeholder="Bijv. john_doe_123" required>
+                        </label>
+                        <label>
+                            Wachtwoord
+                            <input type="password" name="password" placeholder="Bijv. 12345" required>
+                        </label>
+                        <input type="submit" value="Opslaan">
+                    </form>
+               </div> 
+           </section>
+        </main>
+    </body>
+
+<% include components/footer %>

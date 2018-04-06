@@ -1,0 +1,24 @@
+<% include partials/head %>
+<% include components/header %>
+
+    <body>
+        <main class="container">
+           <section>
+               <div class="block">
+                    <form action="/login" method="POST" id="login-form">
+                        <label>
+                            Gebruikersnaam
+                            <input type="text" name="user_name" placeholder="Bijv. John Doe" required>
+                        </label>
+                        <label>
+                            Wachtwoord
+                            <input type="password" name="password" placeholder="Bijv. 12345" required>
+                        </label>
+                        <input type="submit" value="Inloggen">
+                    </form>
+               </div> 
+           </section>
+        </main>
+    </body>
+
+<% include components/footer %>
