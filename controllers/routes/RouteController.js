@@ -22,7 +22,7 @@ class RouteController extends Controller {
         this.request = req
         this.response = res
         this.payload = {
-            data: data || null,
+            payload: data || null,
             loggedIn: false
         }
         this.verifySession()
@@ -33,7 +33,7 @@ class RouteController extends Controller {
      */
     verifySession() {
         if (!this.request.session.user) {
-            if (this.view === 'login') {
+            if (this.view === 'login' || this.view === 'register') {
                 return this.renderView()
             } else {
                 return this.response.status(401).render('login-error', {

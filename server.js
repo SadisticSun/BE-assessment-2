@@ -37,7 +37,9 @@ app.listen(8080)
 
 // Index Route
 app.get('/', (req, res) => {
-    Route.process('index', req, res)
+    Route.process('index', req, res, {
+        user: req.session.user
+    })
 })
 
 // Login Route
@@ -46,7 +48,6 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    console.log(req.body)
     DB.validateUser(req.body, user => {
         req.session.user = user.user_name
         res.redirect('/')

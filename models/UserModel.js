@@ -25,15 +25,10 @@ async function encryptPassword(password) {
  * @param  {string} hash
  * @param  {string} password
  */
-async function verifyPassword(hash, password, callback) {
+async function verifyPassword(hash, password) {
     try {
-        if (await argon.verify(hash, password)) {
-            console.log('[SERVER] Password validated')
-            return true
-        } else {
-            console.log('[SERVER] Password is not valid')
-            return false
-        }
+        const passwordVerified = await argon.verify(hash, password)
+        return passwordVerified
     } catch (err) {
         console.error(err)
     }
@@ -63,16 +58,26 @@ module.exports.createUser = async (credentials, callback) => {
         }
     })
 }
-
+/** Queries database for user and validates username and password
+ * @param  {object} credentials
+ * @param  {function} callback
+ */
 module.exports.authenticateUser = async (credentials, callback) => {
     if (!credentials)
         return console.error('ERROR: No valid login information provided')
-    
-    User.findOne({ user_name: credentials.user_name }, 'user_name', (err, user) => {
+
+    User.findOne({
+        user_name: credentials.user_name
+    }, 'user_name password', async (err, user) => {
         if (err) {
             console.error(err)
         } else {
-            callback(user)
+            const unhashedPassword = credentials.password
+            const hashedPassword = user.password
+            const verified = await verifyPassword(hashedPassword, unhashedPassword)
+            if (verified) {
+                callback(user)
+            }
         }
     })
 }
