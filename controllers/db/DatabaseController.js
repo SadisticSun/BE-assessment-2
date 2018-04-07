@@ -2,6 +2,7 @@ const Controller    = require('../Controller')
 const dotenv        = require('dotenv').config()
 const mongoose      = require('mongoose')
 const UserModel     = require('../../models/UserModel')
+const GuitarModel   = require('../../models/GuitarModel')
 
 class DatabaseController extends Controller {
     constructor() {
@@ -37,6 +38,10 @@ class DatabaseController extends Controller {
 
     validateUser(credentials, callback) {
         UserModel.authenticateUser(credentials, callback)
+    }
+
+    addNewGuitar(newGuitar, callback) {
+        GuitarModel.addGuitar(newGuitar, callback)
     }
 }
 

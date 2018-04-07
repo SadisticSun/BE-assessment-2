@@ -1,0 +1,137 @@
+<% include partials/head %>
+    <% include components/header %>
+
+
+        <main class="container">
+            <section>
+                <div class="block">
+                    <form action="/add-guitar" method="POST" id="add-guitar-form" enctype="multipart/form-data">
+                        <fieldset>
+                            <legend>Basis Informatie</legend>
+                            <label>
+                                Modelnaam
+                                <input type="text" name="model" placeholder="Modelnaam" required>
+                            </label>
+                            <label>
+                                Merk
+                                <input type="text" name="brand" placeholder="Gitaarmerk" required>
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Gitaar Body Details</legend>
+                            <label>
+                                Body Type
+                                <select name="body_type" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="stratocaster">Stratocaster</option>
+                                    <option value="telecaster">Telecaster</option>
+                                    <option value="superstrat">Superstrat</option>
+                                    <option value="v-shape">V-shape</option>
+                                    <option value="les-paul">Les Paul</option>
+                                    <option value="extreme">Extreme</option>
+                                    <option value="onbekend">Onbekend</option>
+                                </select>
+                            </label>
+                            <label>
+                                Body Houtsoort
+                                <select name="body_wood" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="maple">Maple</option>
+                                    <option value="quilted maple">Quilted Maple</option>
+                                    <option value="mahogany">Mahogany</option>
+                                    <option value="alder">Alder</option>
+                                    <option value="swamp ash">Swamp Ash</option>
+                                    <option value="basswood">Basswood</option>
+                                    <option value="onbekend">Onbekend</option>
+                                </select>
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Gitaar Hals Details</legend>
+                            <label>
+                                Hals Type
+                                <select name="neck_type" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="c">C-shaped</option>
+                                    <option value="d">D-shaped</option>
+                                    <option value="v">V-shaped</option>
+                                </select>
+                            </label>
+                            <label>
+                                Hals Houtsoort
+                                <select name="neck_wood" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="maple">Maple</option>
+                                    <option value="quilted maple">Quilted Maple</option>
+                                    <option value="mahogany">Mahogany</option>
+                                    <option value="alder">Alder</option>
+                                    <option value="swamp ash">Swamp Ash</option>
+                                    <option value="basswood">Basswood</option>
+                                    <option value="onbekend">Onbekend</option>
+                                </select>
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Fretboard Details</legend>
+                            <label>
+                                Fretboard Type
+                                <select name="fretboard_type" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="regular">Standaard</option>
+                                    <option value="fanned">Fanned</option>
+                                    <option value="fretless">Fretless</option>
+                                </select>
+                            </label>
+                            <label>
+                                Fretboard Houtsoort
+                                <select name="fretboard_wood" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="maple">Maple</option>
+                                    <option value="quilted maple">Quilted Maple</option>
+                                    <option value="mahogany">Mahogany</option>
+                                    <option value="alder">Alder</option>
+                                    <option value="swamp ash">Swamp Ash</option>
+                                    <option value="basswood">Basswood</option>
+                                    <option value="onbekend">Onbekend</option>
+                                </select>
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Overige details</legend>
+                            <label>
+                                Pickups
+                                <select name="pickup_type" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="active">Active</option>
+                                    <option value="passive">Passive</option>
+                                </select>
+                            </label>
+                            <label>
+                                Brugtype
+                                <select name="bridge_type" required>
+                                    <option disabled selected value="">Selecteer een optie</option>
+                                    <option value="vast">Vaste brug</option>
+                                    <option value="floyd rose">Floyd Rose</option>
+                                </select>
+                            </label>
+                            <label>
+                                Aantal Snaren
+                                <input type="number" name="string_amount" min="6" max="12" required>
+                            </label>
+                            <label>
+                                Aantal fretten
+                                <input type="number" name="fret_amount" min="22" max="24" required>
+                            </label>
+                        </fieldset>
+                        <!-- <label>
+                            Upload afbeelding
+                            <input type="file" name="guitar_image">
+                        </label> -->
+                        <input type="submit" value="Opslaan">
+                    </form>
+                </div>
+            </section>
+        </main>
+
+
+        <% include components/footer %>

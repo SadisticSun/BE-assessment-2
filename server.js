@@ -4,6 +4,7 @@ const session = require('express-session')
 const compression = require('compression')
 const helmet = require('helmet')
 const multer = require('multer')
+const upload = multer()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express()
@@ -33,6 +34,8 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
+app.use(express.static('uploads'))
+app.use(express.json())
 app.listen(8080)
 
 // Index Route
@@ -70,10 +73,21 @@ app.get('/about', (req, res) => {
     })
 })
 
+// Add Guitar Route
+app.get('/add-guitar', (req, res) => {
+    Route.process('add-guitar', req, res)
+})
+
+app.post('/add-guitar', upload.array(), (req, res) => {
+    DB.addNewGuitar(req.body, () => {
+        res.redirect('/')
+    })
+})
+
 // Detail Page Route
-// app.get('/:id', (req, res) => {
-//     Route.process('detail', req, res)
-// })
+app.get('/guitar/:id', (req, res) => {
+    Route.process('detail', req, res)
+})
 
 // Logout Route
 app.get('/logout', (req, res) => {
