@@ -1,0 +1,41 @@
+<% include ../partials/head %>
+<% include ../components/header %>
+
+<% include ../components/sidebar %>
+
+        <main>
+            <h1 class="is-size-4">Alle Gitaren</h1>
+            <hr>
+            <section>
+                <div class="product-grid">
+                <% if (data.payload.data && data.payload.data.length > 0) { %>
+                    <% data.payload.data.forEach(guitar => { %>
+                        <div class="card">
+                           
+                            <div class="image-container">               
+                                <% if (guitar.image) { %>
+                                    <img class="card-image" src="<%= guitar.image.path %>" alt="<%= guitar.model %>">
+                                <% } else { %>
+                                    <img class="card-image" src="img/guitar-placeholder.png" alt="Geen afbeelding beschikbaar">
+                                <% } %>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4">
+                                            <a href="/guitar/<%= guitar.id %>"><%= guitar.model %></a>
+                                        </p>
+                                        <p class="subtitle is-6"><%= guitar.brand %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                        <em>Niets gevonden...</em>
+                <% } %>
+                </div>
+            </section>
+        </main>
+
+<% include ../components/footer %>

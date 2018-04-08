@@ -1,5 +1,5 @@
 const Controller = require('../Controller')
-
+const DB         = require('../db/DatabaseController')
 class RouteController extends Controller {
 
     constructor() {
@@ -36,7 +36,7 @@ class RouteController extends Controller {
             if (this.view === 'login' || this.view === 'register') {
                 return this.renderView()
             } else {
-                return this.response.status(401).render('login-error', {
+                return this.response.redirect('/login', 401, {
                     data: this.payload
                 })
             }
@@ -50,17 +50,23 @@ class RouteController extends Controller {
      * Render view with optional data
      */
     renderView() {
+        console.log({
+            data: this.payload
+        })
+        
         return this.response.render(this.view, {
             data: this.payload
         })
     }
-
-    // onError(res) {
-    //     return res.render('error', error = {
-    //         code: 404,
-    //         msg: 'Not Found'
-    //     })
-    // }
+    
+    /** Sets 404 status and renders 404 page
+     * @param  {object} res
+     */
+    notFound(res) {
+        return res.status(404).render('404', {
+            data: this.payload
+        })
+    }
 }
 
 module.exports = RouteController

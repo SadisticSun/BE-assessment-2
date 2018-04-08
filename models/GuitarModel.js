@@ -1,17 +1,18 @@
 const mongoose = require('mongoose')
 const guitarSchema = mongoose.Schema({
+    image: Object,
     model: String,
     brand: String,
     body: {
-        type: String,
+        body_type: String,
         wood: String
     },
     neck: {
-        type: String,
+        neck_type: String,
         wood: String
     },
     fretboard: {
-        type: String,
+        fretboard_type: String,
         wood: String
     },
     pickup_type: String,
@@ -22,27 +23,28 @@ const guitarSchema = mongoose.Schema({
 
 const Guitar = mongoose.model('Guitar', guitarSchema)
 
-module.exports.addGuitar = async (data, callback) => {
-    console.log(typeof data.body_type)
+module.exports.addGuitar = async (fields, files, callback) => {
+  
     const guitar = new Guitar({
-        model: data.model,
-        brand: data.brand,
+        image: files.image[0] || null,
+        model: fields.model,
+        brand: fields.brand,
         body: {
-            type: data.body_type,
-            wood: data.body_wood
+            body_type: fields.body_type,
+            wood: fields.body_wood
         },
         neck: {
-            type: data.neck_type,
-            wood: data.neck_wood
+            neck_type: fields.neck_type,
+            wood: fields.neck_wood
         },
         fretboard: {
-            type: data.fretboard_type,
-            wood: data.fretboard_wood
+            fretboard_type: fields.fretboard_type,
+            wood: fields.fretboard_wood
         },
-        pickup_type: data.pickup_type,
-        string_amount: parseInt(data.string_amount, 10),
-        fret_amount: parseInt(data.fret_amount, 10),
-        bridge_type: data.bridge_type
+        pickup_type: fields.pickup_type,
+        string_amount: parseInt(fields.string_amount, 10),
+        fret_amount: parseInt(fields.fret_amount, 10),
+        bridge_type: fields.bridge_type,
     })
 
     guitar.save((err, guitar) => {
@@ -60,5 +62,5 @@ module.exports.getGuitarById = (id, callback) => {
 }
 
 module.exports.getAllGuitars = (callback) => {
-	Guitar.find(callback)
+	Guitar.find((callback))
 };

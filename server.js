@@ -4,7 +4,7 @@ const session = require('express-session')
 const compression = require('compression')
 const helmet = require('helmet')
 const multer = require('multer')
-const upload = multer()
+const upload = multer({ dest: 'uploads/' })
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express()
@@ -18,9 +18,12 @@ DB.connect()
 const RouteController = require('./controllers/routes/RouteController')
 const Route = new RouteController()
 
+// Error Handler
+const ErrorController = require('./controllers/ErrorController')
+
 // App config
 app.set('view engine', 'ejs')
-app.set('views', 'views')
+app.set('views', 'views/pages')
 app.use(morgan('dev'))
 app.use(helmet())
 app.use(compression())
@@ -34,14 +37,21 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
-app.use(express.static('uploads'))
+app.use('/uploads', express.static('uploads'))
 app.use(express.json())
 app.listen(8080)
 
 // Index Route
 app.get('/', (req, res) => {
-    Route.process('index', req, res, {
-        user: req.session.user
+    DB.getAllGutars((err, documents) => {
+        if (err) {
+            ErrorController.throw(err)
+        } else {
+            Route.process('index', req, res, {
+                user: req.session.user,
+                data: documents
+            })
+        }
     })
 })
 
@@ -78,15 +88,21 @@ app.get('/add-guitar', (req, res) => {
     Route.process('add-guitar', req, res)
 })
 
-app.post('/add-guitar', upload.array(), (req, res) => {
-    DB.addNewGuitar(req.body, () => {
+app.post('/add-guitar', upload.fields([{ name: 'image', maxCount: 1 }]), (req, res) => {
+    DB.addNewGuitar(req.body, req.files, () => {
         res.redirect('/')
     })
 })
 
 // Detail Page Route
 app.get('/guitar/:id', (req, res) => {
-    Route.process('detail', req, res)
+    DB.getSingleGuitar(req.params.id, (err, guitar) => {
+        if (err) {
+            Route.notFound(res)
+        } else {
+            Route.process('detail', req, res, guitar)
+        }  
+    })   
 })
 
 // Logout Route
@@ -94,10 +110,14 @@ app.get('/logout', (req, res) => {
     if (req.session) {
         req.session.destroy(err => {
             if (err) {
-                console.error(err)
+                ErrorController.throw(err)
             } else {
                 return res.redirect('/')
             }
         });
     }
 });
+
+app.get('/:invalidparam', (req, res) => {
+    Route.notFound(res)
+})

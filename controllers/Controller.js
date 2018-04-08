@@ -6,8 +6,8 @@ class Controller {
      */
     
     assertNotNull(val) {
-        if (val === null || val === undefined) {
-            console.error(`RouteController: constructor param 'val' = ${val}`)
+        if (val === null || val === 'undefined') {
+            console.error(`[CONTROLLER] param 'val' = ${val}`)
         } else {
             return false
         }

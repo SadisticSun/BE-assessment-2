@@ -1,8 +1,9 @@
-const Controller    = require('../Controller')
-const dotenv        = require('dotenv').config()
-const mongoose      = require('mongoose')
-const UserModel     = require('../../models/UserModel')
-const GuitarModel   = require('../../models/GuitarModel')
+const Controller        = require('../Controller')
+const ErrorController   = require('../ErrorController')
+const dotenv            = require('dotenv').config()
+const mongoose          = require('mongoose')
+const UserModel         = require('../../models/UserModel')
+const GuitarModel       = require('../../models/GuitarModel')
 
 class DatabaseController extends Controller {
     constructor() {
@@ -24,24 +25,36 @@ class DatabaseController extends Controller {
             mongoose.connect(this.DB_URI)
             const db = mongoose.connection
             db.on('error', console.error.bind(console, 'connection error:'))
-            db.once('open', () => console.log('[SERVER] Database Connection succesful!'))
+            db.once('open', () => console.log('[DB_CONTROLLER] Database Connection succesful!'))
 
         // Catch connection errors
-        } catch (error) {
-            return console.error(error)
+        } catch (err) {
+            ErrorController.throw(err)
         }
     }
 
     addNewUser(credentials, callback) {
+        this.assertNotNull(credentials)
         UserModel.createUser(credentials, callback)
     }
 
     validateUser(credentials, callback) {
+        this.assertNotNull(credentials)
         UserModel.authenticateUser(credentials, callback)
     }
 
-    addNewGuitar(newGuitar, callback) {
-        GuitarModel.addGuitar(newGuitar, callback)
+    addNewGuitar(newGuitar, files, callback) {
+        this.assertNotNull(newGuitar)
+        GuitarModel.addGuitar(newGuitar, files, callback)
+    }
+
+    getSingleGuitar(id, callback) {
+        this.assertNotNull(id)
+        GuitarModel.getGuitarById(id, (err, doc) => callback(err, doc))
+    }
+
+    getAllGutars(callback) {
+        GuitarModel.getAllGuitars((err, docs) => callback(err, docs))
     }
 }
 

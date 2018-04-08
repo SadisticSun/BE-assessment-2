@@ -1,0 +1,28 @@
+<aside class="menu">
+    <p class="menu-label">
+        Navigatie
+    </p>
+    <ul class="menu-list">
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/about">Over</a>
+        </li>
+        <% if (data.loggedIn === false) { %>
+            <li>
+                <a href="/login">Inloggen</a>
+            </li>
+            <li>
+                <a href="/register">Registeren</a>
+            </li>
+        <% } else { %>
+            <li>
+                <a href="/add-guitar">Upload</a>
+            </li>
+            <li>
+                <a href="/logout">Uitloggen</a>
+            </li>
+        <% } %>
+    </ul>
+</aside>

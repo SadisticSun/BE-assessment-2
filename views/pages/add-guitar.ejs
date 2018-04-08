@@ -1,0 +1,242 @@
+<% include ../partials/head %>
+
+        <main class="container">
+            <section class="add-guitar">
+                <div class="block">
+                    <form action="/add-guitar" method="POST" id="add-guitar-form" enctype="multipart/form-data">
+                        <h3>Algemeen</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Model</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" name="model" placeholder="Modelnaam">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Merk</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" name="brand" placeholder="Merknaam">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Gitaar Body Details</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Body Type</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="body_type" required>
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="stratocaster">Stratocaster</option>
+                                            <option value="telecaster">Telecaster</option>
+                                            <option value="superstrat">Superstrat</option>
+                                            <option value="v-shape">V-shape</option>
+                                            <option value="les-paul">Les Paul</option>
+                                            <option value="extreme">Extreme</option>
+                                            <option value="onbekend">Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Houtsoort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="body_wood" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="maple">Maple</option>
+                                            <option value="quilted maple">Quilted Maple</option>
+                                            <option value="mahogany">Mahogany</option>
+                                            <option value="alder">Alder</option>
+                                            <option value="swamp ash">Swamp Ash</option>
+                                            <option value="basswood">Basswood</option>
+                                            <option value="onbekend">Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Gitaarhals</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Type Hals</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="neck_type" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="c">C-shaped</option>
+                                            <option value="d">D-shaped</option>
+                                            <option value="v">V-shaped</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Houtsoort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="neck_wood" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="maple">Maple</option>
+                                            <option value="quilted maple">Quilted Maple</option>
+                                            <option value="mahogany">Mahogany</option>
+                                            <option value="alder">Alder</option>
+                                            <option value="swamp ash">Swamp Ash</option>
+                                            <option value="basswood">Basswood</option>
+                                            <option value="onbekend">Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Fretboard</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Type</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="fretboard_type" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="standaard">Standaard</option>
+                                            <option value="fanned">Fanned</option>
+                                            <option value="fretloos">Fretless</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Houtsoort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="fretboard_wood" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="maple">Maple</option>
+                                            <option value="quilted maple">Quilted Maple</option>
+                                            <option value="mahogany">Mahogany</option>
+                                            <option value="alder">Alder</option>
+                                            <option value="swamp ash">Swamp Ash</option>
+                                            <option value="basswood">Basswood</option>
+                                            <option value="onbekend">Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Overige Details</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Pickups</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="pickup_type" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="actief">Active</option>
+                                            <option value="passief">Passive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Brugtype</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="bridge_type" required >
+                                            <option disabled selected value="">Selecteer een optie</option>
+                                            <option value="vast">Vaste brug</option>
+                                            <option value="floyd rose">Floyd Rose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Aantal Snaren</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="number" name="string_amount" min="6" max="12" required class="control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Aantal Fretten</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="number" name="fret_amount" min="22" max="24" required class="control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3>Afbeelding Toevoegen</h3>
+                        <div class="file">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="image" accept="image/*">
+                                <span class="file-cta">
+                                    <span class="file-label">
+                                        Kies een afbeelding
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <hr>
+                        <input class="button is-success" type="submit" value="Opslaan">
+                    </form>
+                </div>
+            </section>
+        </main>
