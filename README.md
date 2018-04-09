@@ -61,6 +61,9 @@ For this application I used [MongoDB](https://www.mongodb.com/), a NoSQL, docume
 
 Besides ease of use, MongoDB is famous for its insanely fast performance compared to standard SQL databases. I could have opted for a SQL or PostgreSQL database, but those excel in relational data. Since this application contains no relational data, Mongo was a great choice too.
 
+### Frontend
+The app runs completely without client-side JavaScript.
+For styling, I used the fabulous [Bulma](https://bulma.io/) prototyping CSS framework for simple styling as the focus of this course was not on styling and frontend development. Bulma works great for quick prototypes like this application, but lacks a bit of the robustness that Bootstrap or Foundation have.
 ## What have I learned?
 
 ### Implementing MVC
@@ -112,4 +115,23 @@ const doSomething = async function(callback) {
 Normally, the `return` statement would have been executed immediately after the constant `asyncData` was defined. But thanks to the magic of `await`, the compiler 'waits; for `anotherAsyncFunction()` to have finished.
 
 All this basically allows us to write more beautiful code when working with async functions. [Read all about async/await here](https://javascript.info/async-await).
+
+## Wishlist
+There are some features missing that I would have liked to add.
+
+1. Add multiple images to documents
+2. Add videos to documents
+3. Add sound clips to documents
+4. Client-side form validation (with messages)
+5. Responsive design
+6. Filtering system
+7. Search system
+8. Database seeding
+9. More unique design
+
+## Closing words
+I would like to thank Titus Wormer for setting up this course, all the assignments and the assessments. They have helped me a lot in refreshing my knowledge and even updating it. I have a more solid understanding of backend development than I did before.
+
+## Contribution
+I always encourage contributing to my projects, so feel free to check it out and supply me with feedback or new feature ideas.
 
