@@ -72,12 +72,26 @@ module.exports.authenticateUser = async (credentials, callback) => {
     }, 'user_name password', async (err, user) => {
         if (err) {
             console.error(err)
+        } else if (user === null) {
+            console.log('[SERVER] User not found')
+            callback({
+                error: {
+                    message: 'Gebruiker niet gevonden'
+                }
+            })
         } else {
             const unhashedPassword = credentials.password
             const hashedPassword = user.password
             const verified = await verifyPassword(hashedPassword, unhashedPassword)
             if (verified) {
-                callback(user)
+                callback(null, user)
+            } else {
+                console.log('[SERVER] Password incorrect')
+                callback({
+                    error: {
+                        message: 'Wachtwoord komt niet overeen'
+                    }
+                })
             }
         }
     })

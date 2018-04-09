@@ -46,6 +46,8 @@ class DatabaseController extends Controller {
      * @param {function} callback // Callback
      */
     validateUser(credentials, callback) {
+        console.log(credentials);
+        
         this.assertNotNull(credentials)
         UserModel.authenticateUser(credentials, callback)
     }

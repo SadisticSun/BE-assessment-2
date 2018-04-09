@@ -3,18 +3,29 @@
             <main class="container">
                 <section class="login">
                     <div class="block">
+
+                        <% if (data.payload && data.payload.error) { %> 
+                        <div class="message is-danger">
+                            <div class="message-header">
+                                <p>Oeps!</p>
+                            </div>
+                            <div class="message-body">
+                               <%= data.payload.error.message %>
+                            </div>
+                        </div>
+                        <% } %>
                         <div>
                             <h3 class="heading">Inloggen</h3>
                         </div>
                         <form action="/login" method="POST">
                             <div class="field">
                                 <p class="control">
-                                    <input name="user_name" class="input" type="text" placeholder="Gebruikersnaam">
+                                    <input name="user_name" class="input" type="text" placeholder="Gebruikersnaam" required>
                                 </p>
                             </div>
                             <div class="field">
                                 <p class="control">
-                                    <input name="password" class="input" type="password" placeholder="Wachtwoord">
+                                    <input name="password" class="input" type="password" placeholder="Wachtwoord" required>
                                 </p>
                             </div>
                             <div class="field is-grouped is-grouped-left">

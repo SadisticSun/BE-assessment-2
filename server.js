@@ -63,9 +63,14 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    DB.validateUser(req.body, user => {
-        req.session.user = user.user_name
-        res.redirect('/')
+    
+    DB.validateUser(req.body, (err, user) => {
+        if (err) {
+            Route.process('login', req, res, err)
+        } else {
+            req.session.user = user.user_name
+            res.redirect('/')
+        }
     })
 })
 
