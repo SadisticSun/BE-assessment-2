@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model('User', userSchema)
 
 /** Hash a password string
- * @param  {string} password
+ * @param {string} password // User password
  */
 async function encryptPassword(password) {
     try {
@@ -21,9 +21,9 @@ async function encryptPassword(password) {
     }
 }
 
-/** Dehashes the supplied hash and compares the result to the user input password
- * @param  {string} hash
- * @param  {string} password
+/** Dehashes and compares a password
+ * @param {string} hash // Hashed password string
+ * @param {string} password // Non-hashed password string
  */
 async function verifyPassword(hash, password) {
     try {
@@ -34,9 +34,9 @@ async function verifyPassword(hash, password) {
     }
 }
 
-/** Create a new user in Database, then call cb function if no errors
- * @param  {object} credentials
- * @param  {function} callback
+/** Create a new user in Database
+ * @param {object} credentials // Form field data
+ * @param {function} callback // Callback
  */
 module.exports.createUser = async (credentials, callback) => {
     if (!credentials)
@@ -58,9 +58,10 @@ module.exports.createUser = async (credentials, callback) => {
         }
     })
 }
+
 /** Queries database for user and validates username and password
- * @param  {object} credentials
- * @param  {function} callback
+ * @param  {object} credentials // Login form field data
+ * @param  {function} callback // Callback
  */
 module.exports.authenticateUser = async (credentials, callback) => {
     if (!credentials)

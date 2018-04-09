@@ -1,0 +1,291 @@
+<% include ../partials/head %>
+
+        <main class="container">
+            <h1 class="is-size-4">Bewerken</h1>
+            <hr>
+            <section class="add-guitar">
+                <div class="block">
+                    <form action="/guitar/<%= data.payload.id %>/edit?_method=PUT" method="POST" id="add-guitar-form" enctype="multipart/form-data">
+                        <h3>Algemeen</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Model</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" name="model" placeholder="Modelnaam" value="<%= data.payload.model %>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Merk</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" name="brand" placeholder="Merknaam" value="<%= data.payload.brand %>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Gitaar Body Details</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Body Type</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="body_type" required>
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="stratocaster" 
+                                                <% if (data.payload.body.body_type === 'stratocaster') { %> selected <% } %>>Stratocaster</option>
+                                            <option value="telecaster"
+                                                <% if (data.payload.body.body_type === 'telecaster') { %> selected <% } %>>Telecaster</option>
+                                            <option value="superstrat"
+                                                <% if (data.payload.body.body_type === 'superstrat') { %> selected <% } %>>Superstrat</option>
+                                            <option value="v-shape"
+                                                <% if (data.payload.body.body_type === 'v-shape') { %> selected <% } %>>V-shape</option>
+                                            <option value="les-paul"
+                                                <% if (data.payload.body.body_type === 'les paul') { %> selected <% } %>>Les Paul</option>
+                                            <option value="extreme"  
+                                                <% if (data.payload.body.body_type === 'extreme') { %> selected <% } %>>Extreme</option>
+                                            <option value="onbekend"
+                                                <% if (data.payload.body.body_type === 'onbekend') { %> selected <% } %>>Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Houtsoort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="body_wood" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="maple"
+                                                <% if (data.payload.body.wood === 'maple') { %> selected <% } %>>Maple</option>
+                                            <option value="quilted maple"
+                                                <% if (data.payload.body.wood === 'quilted maple') { %> selected <% } %>>Quilted Maple</option>
+                                            <option value="mahogany"
+                                                <% if (data.payload.body.wood === 'mahogany') { %> selected <% } %>>Mahogany</option>
+                                            <option value="alder"
+                                                <% if (data.payload.body.wood === 'alder') { %> selected <% } %>>Alder</option>
+                                            <option value="swamp ash"
+                                                <% if (data.payload.body.wood === 'swamp ash') { %> selected <% } %>>Swamp Ash</option>
+                                            <option value="basswood"
+                                                <% if (data.payload.body.wood === 'basswood') { %> selected <% } %>>Basswood</option>
+                                            <option value="onbekend"
+                                                <% if (data.payload.body.wood === 'unknown') { %> selected <% } %>>Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Gitaarhals</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Type Hals</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="neck_type" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="c"
+                                                <% if (data.payload.neck.neck_type === 'c') { %> selected <% } %>>C-shaped</option>
+                                            <option value="d"
+                                                <% if (data.payload.neck.neck_type === 'd') { %> selected <% } %>>D-shaped</option>
+                                            <option value="v"
+                                                <% if (data.payload.neck.neck_type === 'v') { %> selected <% } %>>V-shaped</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Houtsoort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="neck_wood" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="maple"
+                                                <% if (data.payload.neck.wood === 'maple') { %> selected <% } %>>Maple</option>
+                                            <option value="quilted maple"
+                                                <% if (data.payload.neck.wood === 'quilted maple') { %> selected <% } %>>Quilted Maple</option>
+                                            <option value="mahogany"
+                                                <% if (data.payload.neck.wood === 'mahogany') { %> selected <% } %>>Mahogany</option>
+                                            <option value="alder"
+                                                <% if (data.payload.neck.wood === 'alder') { %> selected <% } %>>Alder</option>
+                                            <option value="swamp ash"
+                                                <% if (data.payload.neck.wood === 'swamp ash') { %> selected <% } %>>Swamp Ash</option>
+                                            <option value="basswood"
+                                                <% if (data.payload.neck.wood === 'basswood') { %> selected <% } %>>Basswood</option>
+                                            <option value="onbekend"
+                                                <% if (data.payload.neck.wood === 'unknown') { %> selected <% } %>>Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Fretboard</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Type</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="fretboard_type" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="standaard"
+                                                <% if (data.payload.fretboard.fretboard_type === 'standaard') { %> selected <% } %>>Standaard</option>
+                                            <option value="fanned"
+                                                <% if (data.payload.fretboard.fretboard_type === 'fanned') { %> selected <% } %>>Fanned</option>
+                                            <option value="fretloos"
+                                                <% if (data.payload.fretboard.fretboard_type === 'fretloos') { %> selected <% } %>>Fretloos</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Houtsoort</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="fretboard_wood" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="maple"
+                                                <% if (data.payload.fretboard.wood === 'maple') { %> selected <% } %>>Maple</option>
+                                            <option value="quilted maple"
+                                                <% if (data.payload.fretboard.wood === 'quilted maple') { %> selected <% } %>>Quilted Maple</option>
+                                            <option value="mahogany"
+                                                <% if (data.payload.fretboard.wood === 'mahogany') { %> selected <% } %>>Mahogany</option>
+                                            <option value="alder"
+                                                <% if (data.payload.fretboard.wood === 'alder') { %> selected <% } %>>Alder</option>
+                                            <option value="swamp ash"
+                                                <% if (data.payload.fretboard.wood === 'swamp ash') { %> selected <% } %>>Swamp Ash</option>
+                                            <option value="basswood"
+                                                <% if (data.payload.fretboard.wood === 'basswood') { %> selected <% } %>>Basswood</option>
+                                            <option value="onbekend"
+                                                <% if (data.payload.fretboard.wood === 'onbekend') { %> selected <% } %>>Onbekend</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3>Overige Details</h3>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Pickups</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="pickup_type" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="actief"
+                                                <% if (data.payload.pickup_type === 'actief') { %> selected <% } %>>Actief</option>
+                                            <option value="passief"
+                                                <% if (data.payload.pickup_type === 'passief') { %> selected <% } %>>Passief</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Brugtype</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="select is-full-width">
+                                        <select name="bridge_type" required >
+                                            <option disabled value="">Selecteer een optie</option>
+                                            <option value="vast"
+                                                <% if (data.payload.bridge_type === 'vast') { %> selected <% } %>>Vast</option>
+                                            <option value="floyd rose"
+                                                <% if (data.payload.bridge_type === 'floyd rose') { %> selected <% } %>>Floyd Rose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Aantal Snaren</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="number" name="string_amount" min="6" max="12" required class="control"
+                                        value="<%= data.payload.string_amount %>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Aantal Fretten</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input type="number" name="fret_amount" min="22" max="24" required class="control"
+                                        value="<%= data.payload.fret_amount %>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3>Afbeelding Aanpassen</h3>
+                        <div class="image-container">
+                                <% if (data.payload.image) { %> 
+                                    <img class="detail-image" src="/<%= data.payload.image.path %>" alt="<%= data.payload.model %>">
+                                <% } else { %>
+                                    <img class="detail-placeholder" src="/img/guitar-placeholder.png" alt="<%= data.payload.model %>">
+                                <% } %>
+                        </div>
+                        <div class="file">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="image" accept="image/*">
+                                <span class="file-cta">
+                                    <span class="file-label">
+                                        Kies een afbeelding
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <hr>
+                        <input class="button is-success" type="submit" value="Opslaan">
+                    </form>
+                </div>
+            </section>
+        </main>

@@ -7,10 +7,10 @@ class RouteController extends Controller {
     }
 
     /** Processes the view request
-     * @param  {string} view
-     * @param  {object} req
-     * @param  {object} res
-     * @param  {object} data (optional)
+     * @param {string} view
+     * @param {object} req
+     * @param {object} res
+     * @param {object} data (optional)
      */
 
     process(view, req, res, data) {
@@ -50,17 +50,13 @@ class RouteController extends Controller {
      * Render view with optional data
      */
     renderView() {
-        console.log({
-            data: this.payload
-        })
-        
         return this.response.render(this.view, {
             data: this.payload
         })
     }
     
     /** Sets 404 status and renders 404 page
-     * @param  {object} res
+     * @param {object} res
      */
     notFound(res) {
         return res.status(404).render('404', {

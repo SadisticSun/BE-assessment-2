@@ -1,20 +1,21 @@
 // Main dependencies
-const express = require('express')
-const session = require('express-session')
-const compression = require('compression')
-const helmet = require('helmet')
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
-const app = express()
+const express           = require('express')
+const methodOverride    = require('method-override')
+const session           = require('express-session')
+const compression       = require('compression')
+const helmet            = require('helmet')
+const multer            = require('multer')
+const bodyParser        = require('body-parser')
+const morgan            = require('morgan')
+const upload            = multer({ dest: 'uploads/' })
+const app               = express()
 
 // Database Setup
 const Database = require('./controllers/db/DatabaseController')
 const DB = new Database()
 DB.connect()
 
-// Route Modules
+// Route Setup
 const RouteController = require('./controllers/routes/RouteController')
 const Route = new RouteController()
 
@@ -24,6 +25,7 @@ const ErrorController = require('./controllers/ErrorController')
 // App config
 app.set('view engine', 'ejs')
 app.set('views', 'views/pages')
+app.use(methodOverride('_method'))
 app.use(morgan('dev'))
 app.use(helmet())
 app.use(compression())
@@ -103,6 +105,27 @@ app.get('/guitar/:id', (req, res) => {
             Route.process('detail', req, res, guitar)
         }  
     })   
+})
+
+// Edit Guitar Route
+app.get('/guitar/:id/edit', (req, res) => {
+    DB.getSingleGuitar(req.params.id, (err, guitar) => {
+        if (err) {
+            Route.notFound(res)
+        } else {
+            Route.process('edit', req, res, guitar)
+        }  
+    })   
+})
+
+app.put('/guitar/:id/edit', upload.fields([{ name: 'image', maxCount: 1 }]), (req, res) => {
+    DB.updateGuitar(req.params.id, req.body, req.files, (err) => {
+        if (err) {
+
+        } else {
+            res.redirect(`/guitar/${req.params.id}`)
+        }
+    })
 })
 
 // Logout Route

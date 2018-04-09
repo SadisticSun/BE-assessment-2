@@ -32,27 +32,58 @@ class DatabaseController extends Controller {
             ErrorController.throw(err)
         }
     }
-
+    /** Add user to database
+     * @param {object} credentials // Form field data
+     * @param {function} callback // Callback
+     */
     addNewUser(credentials, callback) {
         this.assertNotNull(credentials)
         UserModel.createUser(credentials, callback)
     }
 
+    /** Validate user
+     * @param {object} credentials // Form field data
+     * @param {function} callback // Callback
+     */
     validateUser(credentials, callback) {
         this.assertNotNull(credentials)
         UserModel.authenticateUser(credentials, callback)
     }
 
+    /** Add new guitar document
+     * @param {object} credentials // Form field data
+     * @param {object} files // Optional files 
+     * @param {function} callback // Callback
+     */
     addNewGuitar(newGuitar, files, callback) {
         this.assertNotNull(newGuitar)
         GuitarModel.addGuitar(newGuitar, files, callback)
     }
 
+    /** Update guitar document
+     * @param {string} id // Document ID
+     * @param {object} credentials // Form field data
+     * @param {object} files // Optional files 
+     * @param {function} callback // Callback
+     */
+    updateGuitar(id, updatedGuitar, files, callback) {
+        this.assertNotNull(id)
+        this.assertNotNull(updatedGuitar)
+        GuitarModel.updateGuitar(id, updatedGuitar, files, callback)
+    }
+
+    /** Get single guitar document
+     * @param {string} id // Document ID
+     * @param {function} callback // Callback
+     */
     getSingleGuitar(id, callback) {
         this.assertNotNull(id)
         GuitarModel.getGuitarById(id, (err, doc) => callback(err, doc))
     }
 
+    /** Get all guitar document
+     * @param {function} callback // Callback
+     */
     getAllGutars(callback) {
         GuitarModel.getAllGuitars((err, docs) => callback(err, docs))
     }
