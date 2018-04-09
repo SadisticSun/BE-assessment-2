@@ -41,7 +41,7 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.use('/uploads', express.static('uploads'))
 app.use(express.json())
-app.listen(8080)
+app.listen(process.env.PORT || 8080)
 
 // Index Route
 app.get('/', (req, res) => {
