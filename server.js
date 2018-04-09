@@ -107,7 +107,7 @@ app.get('/guitar/:id', (req, res) => {
     })   
 })
 
-// Edit Guitar Route
+// Edit Guitar Page Route
 app.get('/guitar/:id/edit', (req, res) => {
     DB.getSingleGuitar(req.params.id, (err, guitar) => {
         if (err) {
@@ -118,15 +118,28 @@ app.get('/guitar/:id/edit', (req, res) => {
     })   
 })
 
+// Update Guitar Route
 app.put('/guitar/:id/edit', upload.fields([{ name: 'image', maxCount: 1 }]), (req, res) => {
     DB.updateGuitar(req.params.id, req.body, req.files, (err) => {
         if (err) {
-
+            ErrorController.throw(err)
         } else {
             res.redirect(`/guitar/${req.params.id}`)
         }
     })
 })
+
+// Delete Guitar Route
+app.delete('/guitar/:id/delete', (req, res) => {
+    DB.deleteGuitar(req.params.id, (err) => {
+        if (err) {
+            ErrorController.throw(err)
+        } else {
+            res.redirect('/')
+        }
+    }) 
+})
+
 
 // Logout Route
 app.get('/logout', (req, res) => {

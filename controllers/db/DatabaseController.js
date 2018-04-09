@@ -72,6 +72,15 @@ class DatabaseController extends Controller {
         GuitarModel.updateGuitar(id, updatedGuitar, files, callback)
     }
 
+    /** Delete guitar document
+     * @param {string} id // Document ID
+     * @param {function} callback // Callback
+     */
+    deleteGuitar(id, callback) {
+        this.assertNotNull(id)
+        GuitarModel.deleteGuitar(id, callback)
+    }
+
     /** Get single guitar document
      * @param {string} id // Document ID
      * @param {function} callback // Callback

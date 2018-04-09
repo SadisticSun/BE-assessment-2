@@ -7,7 +7,17 @@
                     <%= data.payload.brand %>
                     <%= data.payload.model %>
                 </h1>
-                <a href="/guitar/<%= data.payload.id %>/edit">Bewerken</a>
+                <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button is-small is-info" href="/guitar/<%= data.payload.id %>/edit">Bewerken</a>
+                        </p>
+                        <p class="control">
+                            <form action="/guitar/<%= data.payload.id %>/delete?_method=DELETE" method="POST">
+                                <input class="button is-small is-danger" type="submit" value="Verwijderen">
+                            </form>
+                        </p>
+                </div>
+               
             </header>
            
             <hr>

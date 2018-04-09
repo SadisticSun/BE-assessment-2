@@ -107,6 +107,14 @@ module.exports.updateGuitar = (id, fields, files, callback) => {
     })
 }
 
+/** Delete document
+ * @param {string} id // Document ID
+ * @param {function} callback // Callback
+ */
+module.exports.deleteGuitar = (id, callback) => {
+    Guitar.findByIdAndRemove(id, callback)
+}
+
 /** Get a single document
  * @param {string} id // Document ID
  * @param {function} callback // Callback
