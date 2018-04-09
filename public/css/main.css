@@ -1,0 +1,98 @@
+* {
+    font-family: sans-serif;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: rgb(249, 249, 249);
+}
+
+aside {
+   padding: 1em;
+}
+main {
+    height: 100%;
+    padding: 1em;
+}
+
+a:hover {
+    transition: 0.2s;
+}
+
+.login,
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login .block,
+.register .block {
+    max-width: 45%;
+    padding: 1em;
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.add-guitar .block {
+    padding: 1em;
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.main-navigation {
+    display: flex;
+}
+
+.main-navigation ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0;
+}
+
+.main-navigation ul li a {
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+
+.image-container {
+    padding: 1em;
+    min-height: 10rem;
+}
+.card-image {
+    max-height: 8em;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.detail-image {
+    max-height: 20em;
+    margin-bottom: 1em;
+}
+.detail-placeholder {
+    margin-bottom: 1em;
+    width: 20%;
+}

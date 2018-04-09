@@ -1,0 +1,137 @@
+<% include ../partials/head %>
+<% include ../components/sidebar %>
+
+        <main>
+            <header>
+                <h1 class="is-size-4">
+                    <%= data.payload.brand %>
+                    <%= data.payload.model %>
+                </h1>
+                <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button is-small is-info" href="/guitar/<%= data.payload.id %>/edit">Bewerken</a>
+                        </p>
+                        <p class="control">
+                            <form action="/guitar/<%= data.payload.id %>/delete?_method=DELETE" method="POST">
+                                <input class="button is-small is-danger" type="submit" value="Verwijderen">
+                            </form>
+                        </p>
+                </div>
+               
+            </header>
+           
+            <hr>
+            <a href="/">< Terug</a>
+            <div class="block">
+                <div class="image-container">
+                    <% if (data.payload.image) { %> 
+                        <img class="detail-image" src="/<%= data.payload.image.path %>" alt="<%= data.payload.model %>">
+                    <% } else { %>
+                        <img class="detail-placeholder" src="/img/guitar-placeholder.png" alt="<%= data.payload.model %>">
+                    <% } %>
+                </div>
+                <div class="information-table">
+                    <table class="table is-fullwidth">
+                        <tr>
+                            <tbody>
+                                <th>Model</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.model %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Merk</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.brand %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Body Type</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.body.body_type %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Body Houtsoort</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.body.wood %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Halstype</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.neck.neck_type %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Hals Houtsoort</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.neck.wood %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Fretboard</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.fretboard.fretboard_type %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Fretboard Houtsoort</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.fretboard.wood %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Pickup Type</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.pickup_type %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Aantal snaren</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.string_amount %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Aantal Fretten</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.fret_amount %>
+                                </td>
+                            </tbody>
+                        </tr>
+                        <tr>
+                            <tbody>
+                                <th>Brug Type</th>
+                                <td class="text-capitalize">
+                                    <%= data.payload.bridge_type %>
+                                </td>
+                            </tbody>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </main>
+
+<% include ../components/footer %>
